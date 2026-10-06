@@ -1,6 +1,6 @@
 {
-  "name": "GlassTube",
-  "short_name": "GlassTube",
+  "name": "MetaTube",
+  "short_name": "MetaTube",
   "description": "Your YouTube subscriptions on Meta Ray-Ban Display glasses",
   "start_url": "./",
   "display": "standalone",

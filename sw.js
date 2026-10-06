@@ -1,4 +1,4 @@
-/* GlassTube service worker — network first, so updates you push to GitHub show up straight away;
+/* MetaTube service worker — network first, so updates you push to GitHub show up straight away;
    falls back to the cached app shell when offline. Bump VERSION if you ever need to flush it. */
 var VERSION = "glasstube-v1";
 var SHELL = ["./", "index.html", "styles.css", "app.js", "config.js", "manifest.webmanifest", "icons/icon-192.png"];

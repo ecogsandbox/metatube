@@ -1,5 +1,5 @@
 /*
-  GlassTube configuration
+  MetaTube configuration
   -----------------------
   Fill these in once (see README.md → "Google setup"). Edit this file straight
   on GitHub with the pencil icon, commit, and the app picks it up.

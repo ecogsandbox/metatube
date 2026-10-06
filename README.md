@@ -1,4 +1,6 @@
-# GlassTube
+# MetaTube
+
+Personal fork of [GlassTube](https://github.com/audiojoe4444/GlassTube) for Meta Ray-Ban Display.
 
 Your YouTube subscriptions on **Meta Ray-Ban Display** glasses. It's a 600×600 web app that you drive with the Neural Band or touchpad (arrows, select and back).
 
@@ -32,10 +34,10 @@ You can use **Try the demo** straight away. To see your own subscriptions, do st
 
 ## 2. Google setup (one time, about 10 minutes)
 
-1. Go to <https://console.cloud.google.com/> and create a project, e.g. "GlassTube".
+1. Go to <https://console.cloud.google.com/> and create a project, e.g. "MetaTube".
 2. Go to **APIs & Services → Library**, search for **YouTube Data API v3** and click **Enable**.
 3. Go to **APIs & Services → OAuth consent screen** (now called "Google Auth Platform"):
-   - User type: **External**. App name: GlassTube. Use your email for the contact fields.
+   - User type: **External**. App name: MetaTube. Use your email for the contact fields.
    - **Data access / Scopes:** add `.../auth/youtube.readonly`.
    - **Audience / Test users:** add your own Google account (the one that owns your YouTube account).
 4. Go to **Credentials → Create credentials → OAuth client ID**:
@@ -58,11 +60,11 @@ API_KEY: "",   // optional
 
 ## Automatic backup to GitHub (optional, recommended)
 
-Glasses software updates can wipe a web app's saved data. GlassTube can keep an **encrypted** copy of your settings, Google sign-in, recent searches and watch progress in a private gist in *your own* GitHub account, and restore it automatically.
+Glasses software updates can wipe a web app's saved data. MetaTube can keep an **encrypted** copy of your settings, Google sign-in, recent searches and watch progress in a private gist in *your own* GitHub account, and restore it automatically.
 
 1. On github.com, go to profile picture → **Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token (classic)**. Name it, set *No expiration*, tick **only `gist`**, and copy the key (it starts `ghp_`). You can reuse the same key as GlassCast.
-2. In the **Meta AI app**, edit GlassTube's web-app address so it ends with `?sync=ghp_yourkey` (use `&sync=` if the address already has a `?`).
-3. Open GlassTube → **Settings**. Under your name it should say **"● Backed up to GitHub · just now"**.
+2. In the **Meta AI app**, edit MetaTube's web-app address so it ends with `?sync=ghp_yourkey` (use `&sync=` if the address already has a `?`).
+3. Open MetaTube → **Settings**. Under your name it should say **"● Backed up to GitHub · just now"**.
 
 The key only ever lives in the app address, never in the code or the repo. The backup is a secret gist called `glasstube-backup.json`, encrypted with AES-256 using a key made from your token. If the key ever leaks, delete it in GitHub's token settings and make a new one. A backup made with the old key is never overwritten. Settings will say "made with a different key", and you can delete the old gist on gist.github.com to start fresh.
 
@@ -78,7 +80,7 @@ The key only ever lives in the app address, never in the code or the repo. The b
 ## Good to know
 
 - **Quota:** Google gives each project 10,000 API units a day for free. Normal browsing uses about 50–100 units per feed refresh, because feeds are cached for 15 minutes. A search costs 100 units. If people share your app, they share your quota.
-- **What the YouTube API can't do:** it can't read your Watch Later or your YouTube watch history, so GlassTube keeps its own resume points on the glasses. Videos you watch here won't appear in YouTube's history.
+- **What the YouTube API can't do:** it can't read your Watch Later or your YouTube watch history, so MetaTube keeps its own resume points on the glasses. Videos you watch here won't appear in YouTube's history.
 - **Some videos won't play:** a few uploaders block playback outside youtube.com, and those videos show a message instead. Ads can still appear, because they come from YouTube's own player.
 - **Updating:** edit or upload files on GitHub and the glasses pick up the change on the next launch.
 

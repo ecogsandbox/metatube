@@ -1,4 +1,4 @@
-/* GlassTube — YouTube for Meta Ray-Ban Display glasses
+/* MetaTube — YouTube for Meta Ray-Ban Display glasses
    600x600 viewport · D-pad input (arrows / Enter / Escape / Backspace) · black = transparent */
 (function () {
   "use strict";
@@ -24,7 +24,7 @@
 
   /* ---------------- encrypted backup to the user's own GitHub (secret gist) ----------------
      Glasses software updates can wipe web-app storage. If the app address contains ?sync=<GitHub token>
-     (classic token, "gist" permission only), GlassTube keeps an AES-256 encrypted copy of your settings,
+     (classic token, "gist" permission only), MetaTube keeps an AES-256 encrypted copy of your settings,
      sign-in, search history and watch progress in a private gist and restores it automatically.
      The key is never stored in the code or the repo — only in the app address in the Meta AI app. */
   Backup = (function () {
@@ -57,7 +57,7 @@
       if (!keyCache) { sessionSalt = crypto.getRandomValues(new Uint8Array(16)); keyCache = derive(sessionSalt); }
       var iv = crypto.getRandomValues(new Uint8Array(12)), salt = sessionSalt;
       return keyCache.then(function (k) { return crypto.subtle.encrypt({ name: "AES-GCM", iv: iv }, k, te.encode(JSON.stringify(obj))); })
-        .then(function (ct) { return JSON.stringify({ app: "GlassTube", v: 1, salt: b64(salt), iv: b64(iv), data: b64(ct) }); });
+        .then(function (ct) { return JSON.stringify({ app: "MetaTube", v: 1, salt: b64(salt), iv: b64(iv), data: b64(ct) }); });
     }
     function unseal(text) {
       var f = JSON.parse(text);
@@ -178,7 +178,7 @@
       return seal(snap).then(function (text) {
         var files = {}; files[FILE] = { content: text };
         function create() {
-          return gh("POST", "/gists", { description: "GlassTube backup (encrypted)", public: false, files: files })
+          return gh("POST", "/gists", { description: "MetaTube backup (encrypted)", public: false, files: files })
             .then(function (g) { gistId = g.id; store.set("bk.id", g.id); }, function (e) { if (e.code === 404) e.code = "auth"; throw e; });
         }
         if (gistId) return gh("PATCH", "/gists/" + gistId, { files: files }).catch(function (e) { if (e.code === 404) { gistId = null; store.del("bk.id"); return create(); } throw e; });
@@ -504,7 +504,7 @@
   function dv(id, title, dur, daysAgo, views) {
     return { id: id, title: title, ch: "Blender Studio", chId: "demo-blender", at: Date.now() - daysAgo * 86400000, duration: dur, views: views,
       thumb: "https://i.ytimg.com/vi/" + id + "/mqdefault.jpg", hero: "https://i.ytimg.com/vi/" + id + "/maxresdefault.jpg",
-      desc: "Open movie from the Blender Studio — included so you can try GlassTube before connecting your YouTube account." };
+      desc: "Open movie from the Blender Studio — included so you can try MetaTube before connecting your YouTube account." };
   }
   var DEMO = {
     videos: [
@@ -1164,7 +1164,7 @@
         row(r++, "clear", "Clear watch history", "Resets progress bars on this device", ""),
         row(r++, "out", mode === "user" ? "Sign out" : "Sign in", mode === "user" ? "Disconnect your Google account" : "Connect your YouTube account", "")
       ];
-      return '<div class="scr settings">' + topbar(s) + '<div class="set-vp"><div class="vscroll" data-pad="110">' + acct + '<p class="bk ' + Backup.state() + '">' + esc(Backup.label()) + '</p>' + rows.join("") + '<p class="ver">GlassTube ' + VERSION + "</p></div></div></div>";
+      return '<div class="scr settings">' + topbar(s) + '<div class="set-vp"><div class="vscroll" data-pad="110">' + acct + '<p class="bk ' + Backup.state() + '">' + esc(Backup.label()) + '</p>' + rows.join("") + '<p class="ver">MetaTube ' + VERSION + "</p></div></div></div>";
     },
     defaultFocus: function () { return [1, 0]; },
     act: function (s, a) {
