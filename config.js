@@ -14,8 +14,8 @@
     A YouTube Data API v3 key. Only needed for "Browse without signing in".
 */
 window.GT_CONFIG = {
-  CLIENT_ID: "1014148886657-q9eoru70fs9om5c7pjphb20q2m31ppn4.apps.googleusercontent.com",
-  CLIENT_SECRET: "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",
+  CLIENT_ID: "1006502556657-e1ifrj4ct1l4so2jiqq97kedu7ge5c90.apps.googleusercontent.com",
+  CLIENT_SECRET: "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",
   API_KEY: "",
 
   REGION: "GB",          // default Trending region (changeable in Settings)
